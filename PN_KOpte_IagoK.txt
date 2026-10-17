@@ -1,0 +1,67 @@
+﻿###Two-parameter bifurcation in the pyramidal neuron under Cl photocurrent stimulation with respect to Ia and goK
+
+## Gating Variables and Currents
+am=.32*(Ve+54)/(1-exp(-.25*Ve-13.5))
+bm=.28*(Ve+27)/(exp(.2*Ve+5.4)-1)
+an=.032*(Ve+52)/(1-exp(-.2*Ve-10.4))
+bn=.5*exp(-(Ve+57)/40.0)
+ah=.128*exp(-(Ve+50)/18.0)
+bh=4/(1+exp(-.2*Ve-5.4))
+minf=am/(am+bm)
+minfCa=1/(1+exp(-.4*Ve-10))
+Nao=144-b*(Nai-18)
+Clo=130-b*(Cli-6)
+fKo=1/(1+exp(16-Ko))
+EK=26.64*log(Ko/Ki)
+ENa=26.64*log(Nao/Nai)
+ECl=26.64*log(Cli/Clo)
+IL=gNaL*(Ve-ENa)+gKL*(Ve-EK)+gClL*(Ve-ECl)
+IK=gK*n*n*n*n*(Ve-EK)
+INa=gNa*minf*minf*minf*h*(Ve-ENa)
+INap=gp*minf*minf*minf*(Ve-ENa)
+IAHP=gAHP*Ca/(1+Ca)*(Ve-EK)
+Ipump=ppump/(r*(1+exp((Nasat-Nai)/3))*(1+exp(Ksat-Ko)))
+IKCC=max(pKCC*log(Ki*Cli/Ko/Clo),0)
+INKCC=min(pNKCC*fKo*(log(Ki*Cli/Ko/Clo)+log(Nai*Cli/Nao/Clo)),0)
+Idiffo=epsilonK*(Ko-kbath)
+Idiffin=epsilonKi*(Ki-kbathi)
+Iopt=goK*opt_o*(Ve-EK)
+
+
+## Ordinary Differential Equations
+dVe/dt=(Ie-IL-IK-INa-INap-IAHP-Ipump-Iopt+Ia)/Cme
+dh/dt=ah*(1-h)-bh*h
+dn/dt=an*(1-n)-bn*n
+dCa/dt=-epsilon*gCa*minfCa*(Ve-ECa)-Ca/tCa
+dKi/dt=-(r*(IK+IAHP+gKL*(Ve-EK)-2*Ipump+Iopt)+IKCC+INKCC+Idiffin)/tau
+dNai/dt=(-r*(INa+INap+gNaL*(Ve-ENa)+3*Ipump)-INKCC)/tau
+dCli/dt=(r*(gClL*(Ve-ECl))-IKCC-2*INKCC)/tau
+dKo/dt=(r*b*(IK+IAHP+gKL*(Ve-EK)-2*Ipump+Iopt)+b*(IKCC+INKCC)-Idiffo)/tau
+dopt_o/dt=opt_p*A*(1-opt_o-opt_d)-opt_Gd*opt_o
+dopt_d/dt=opt_Gd*opt_o-opt_Gr*opt_d
+
+## Bifurcation Parameter
+par Ia=-4,goK=5
+
+## Optogenetics Parameters
+par opt_p=0.01455901512,opt_Gr=0.1385,opt_Gd=0.6518,A=10
+
+## Pyramidal Neuron Parameters
+par gK=80,gNa=100,gp=1,gAHP=1.5,gCa=1,ECa=120,tCa=80,epsilon=.002,Ie=4,Cme=1
+par tau=1000,r=.044417988111881,b=4,pKCC=.3,pNKCC=.1,ppump=.25,Nasat=22,Ksat=3.5
+par epsilonK=.4,kbath=3.5,gNaL=.0015,gKL=.05,gClL=.015,epsilonKi=0.005,kbathi=134
+
+## Initial conditions
+init Ve=-96.801595405913503,h=0.999997992039873,n=0.000136117084896,Ca=0.000000000011667,Ki=134.000000306577420
+init Nai=11.563514438547486,Cli=3.644038120402055,Ko=3.499999998833384,opt_o=0.098202034953552,opt_d=0.462152248250707
+
+
+## Integration Parameters
+@ total=100,MAXSTOR=20000000,xplot=t,yplot=Ve,
+@ bounds=200,dt=0.001,xlo=0,xhi=100,ylo=-110,yhi=-20
+
+## AUTO Parameters
+@ Ntst=150,ds=0.001,dsmin=0.0001,dsmax=0.001,parmin=-50,parmax=20
+@ nmax=10000000,autoxmin=-5,autoxmax=6,autoymin=-100,autoymax=50
+
+done
