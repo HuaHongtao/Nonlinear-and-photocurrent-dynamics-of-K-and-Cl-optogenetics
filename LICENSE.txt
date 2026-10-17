@@ -1,0 +1,26 @@
+In English
+
+The descriptions of all files are as follows:
+
+(1) The pyramidal neuron model and parameters were taken from Ref. [1]. At an external stimulation current of I_a = 0 μA/cm2, the pyramidal neuron exhibits tonic spiking. The corresponding computational program is “PN.ode”, and the simulation results are shown in “Spiking_Ia0.png”.
+
+(2) The computational program for the one-parameter bifurcation of the isolated pyramidal neuron with respect to the external stimulation parameter I_a is “PN_Ia.ode”. The simulation results are shown in “PN_Bif_Ia.png”.
+
+(3) The computational file for the two-parameter bifurcation of the Cl-photocurrent-modulated pyramidal neuron model with respect to the external stimulation parameter I_a and the photocurrent conductance g_{oCl} is “PN_ClOpte_IagoCl.ode”. The simulation results are shown in “PN+ClPhotocurrent_Bif_IagoCl.png”.
+
+(4) The computational file for the two-parameter bifurcation of the K-photocurrent-modulated pyramidal neuron model with respect to the external stimulation parameter I_a and the photocurrent conductance g_{oK} is “PN_KOpte_IagoK.ode”. The simulation results are shown in “PN+KPhotocurrent_Bif_IagoK.png”.
+
+Note: All bifurcation computations were performed using XPPAUT 8.0; the usage of XPPAUT is described in Ref. [2].
+
+In Chinese
+所有文件的说明如下:
+(1) 锥体神经元模型和参数源自文献[1], 当外激励电流 I_a = 0 μA/cm2 时, 锥体神经元表现为峰放电, 具体的计算程序为 "PN.ode". 运行的结果见图 "Spiking_Ia0.png"
+(2) 孤立锥体神经元随外激励参数 I_a 的单参数分岔计算程序为 "PN_Ia.ode". 运行的结果见图 "PN_Bif_Ia.png".
+(3) Cl 光电流调控的锥体神经元模型随外激励参数 I_a 和 光电流电导 g_oCl 的双参数分岔计算文件为 "PN_ClOpte_IagoCl.ode". 运行结果见图 "PN+ClPhotocurrent_Bif_IagoCl.png".
+(4) K 光电流调控的锥体神经元模型随外激励参数 I_a 和 光电流电导 g_oK 的双参数分岔计算文件为 "PN_KOpte_IagoK.ode". 运行结果见图 "PN+KPhotocurrent_Bif_IagoK.png".
+注意: 所有分岔计算采用软件 XPPAUT8.0, XPPAUT 的用法见文献[2]
+
+
+References
+[1] Hua, H.; Gu, H.; Ma, K.; Jia, Y.; Wu, L. Dynamics and Conditions for Inhibitory Synaptic Current to Induce Bursting and Spreading Depolarization in Pyramidal Neurons. Sci Rep 2025, 15 (1), 8886. https://doi.org/10.1038/s41598-025-92647-9
+[2] Ermentrout, B. Simulating, Analyzing, and Animating Dynamical Systems: A Guide to XPPAUT for Researchers and Students; Society for Industrial and Applied Mathematics: Philadelphia, PA, 2002. https://doi.org/10.1137/1.9780898718195
